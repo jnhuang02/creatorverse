@@ -3,6 +3,7 @@ import ShowCreators from './pages/ShowCreators.jsx'
 import ViewCreator from './pages/ViewCreator.jsx'
 import AddCreator from './pages/AddCreator.jsx'
 import EditCreator from './pages/EditCreator.jsx'
+import '@picocss/pico/css/pico.min.css'
 
 export default function App() {
   const routes = useRoutes([

@@ -30,6 +30,8 @@ The following **additional** features are implemented:
 
 - [x] Responsive grid layout for displaying creator cards
 - [x] Navigation between pages without reload using `react-router-dom`
+- [x] Default avatar if no imageURL used
+
 
 ## Video Walkthrough
 
