@@ -28,8 +28,8 @@ export default function CreatorCard({ creator }) {
         }}
         style={{
           width: '100%',
-          height: 180,        // fixed height for uniform cards
-          objectFit: 'cover', // crop to fit
+          height: 180,       
+          objectFit: 'cover', 
           borderRadius: 12,
           marginBottom: 12
         }}

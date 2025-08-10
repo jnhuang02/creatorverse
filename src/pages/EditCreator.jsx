@@ -29,17 +29,32 @@ export default function EditCreator() {
       .eq('id', id)
 
     if (!error) {
-      navigate('/') // ✅ Go back home after saving
+      navigate('/')
+    }
+  }
+
+  async function onDelete() {
+    const ok = window.confirm('Are you sure you want to delete this creator? This cannot be undone.')
+    if (!ok) return
+
+    const { error } = await supabase
+      .from('creators')
+      .delete()
+      .eq('id', id)
+
+    if (error) {
+      alert('Error deleting creator: ' + error.message)
+    } else {
+      navigate('/') // go back to home after delete
     }
   }
 
   return (
-    <form 
-      onSubmit={onSubmit} 
+    <form
+      onSubmit={onSubmit}
       style={{ maxWidth: 680, margin: '40px auto', display: 'grid', gap: 12 }}
     >
       <h1>Edit Creator</h1>
-
       <label>
         Name:
         <input
@@ -49,7 +64,6 @@ export default function EditCreator() {
           required
         />
       </label>
-
       <label>
         URL:
         <input
@@ -59,7 +73,6 @@ export default function EditCreator() {
           required
         />
       </label>
-
       <label>
         Image URL (optional):
         <input
@@ -68,7 +81,6 @@ export default function EditCreator() {
           onChange={e => setForm({ ...form, imageURL: e.target.value })}
         />
       </label>
-
       <label>
         Description:
         <textarea
@@ -77,8 +89,17 @@ export default function EditCreator() {
           onChange={e => setForm({ ...form, description: e.target.value })}
         />
       </label>
-
-      <button type="submit">Save Changes</button>
+      
+      <div style={{ display: 'flex', gap: 10 }}>
+        <button type="submit">Save Changes</button>
+        <button
+          type="button"
+          onClick={onDelete}
+          style={{ background: '#f44', color: '#fff', border: 'none', padding: '8px 12px', borderRadius: 6 }}
+        >
+          Delete
+        </button>
+      </div>
     </form>
   )
 }
